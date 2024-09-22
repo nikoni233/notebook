@@ -1,3 +1,3 @@
 git add .
-git commit "test auto update"
+git commit -m "test auto update"
 git push
