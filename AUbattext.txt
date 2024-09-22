@@ -4,16 +4,9 @@ chcp 65001 >nul
 REM AutoUpdate.git
 REM 在运行之前，要先在你的本地生成一对ssh的公钥和秘钥，把公钥配置在你的github账户上。
 REM 自动上传脚本，双击bat文件运行，自动上传至你所连接的github库上。
-:logUpdate
-echo %1 [%date% %time%] >> Update.log
-git add Update.log
-git commit -m "auto update log"
-git push
-goto :eof
-
 
 echo AutoUpdate to github
-echo === === === === ===
+echo HHHHHHHHHHHHHHHHHHHHHHH
 
 if not exist ".git" (
     REM 第一次运行脚本，如果没有目录仓库初始化的话，会自动初始化，并进行第一次上传github。
@@ -28,7 +21,10 @@ if not exist ".git" (
     git branch -M main
     git push -u origin main
     REM 初始化操作写入日志，上传日志
-	call :logUpdate "Initialization log and first commit"
+    echo Initialization log and first commit.[%date% %time%] >> Update.log
+	git add Update.log
+	git commit -m "auto update log"
+	git push
 )else (
 	git status --porcelain | findstr . >nul
 	if errorlevel 1 (
@@ -41,15 +37,14 @@ if not exist ".git" (
 		git commit -m "auto update files"
 		git push
 		REM 更新写入日志，上传日志
-        call :logUpdate "Auto update files"
+    	echo Auto update files.[%date% %time%] >> Update.log
+		git add Update.log
+		git commit -m "auto update log"
+		git push
 
 	)
 
 )
 
 
-echo "hahah" >> Update.log
-echo 等待30秒...
-timeout /t 30 /nobreak >nul
-if errorlevel 1 exit
-echo "hahah2222" >> Update.log
+timeout /t 30
