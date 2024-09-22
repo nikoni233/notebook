@@ -1,0 +1,20 @@
+https://learngitbranching.js.org/?demo=&locale=zh_CN
+
+
+git
+
+https://learngitbranching.js.org/?demo=&locale=zh_CN
+
+#第一次
+echo "# notebook" >> README.md
+git init
+git add .
+git branch -M main
+git remote add origin git@github.com:nikoni233/notebook.git
+git push -u origin main
+
+#每次上传
+@echo off
+git add .
+git commit -m "更新文件"
+git push
