@@ -155,22 +155,22 @@ echo "/dev/mapper/vg01-lv01 /data xfs default 0 0" >> /etc/fstab
 
 
 	创建一个名为 `vg01` 的卷组，并将物理卷 `/dev/sdb` 添加到这个卷组中。
-
+	
 	查看卷组信息：
-
+	
 	```bash
 	vgs
 	```
 
 
 	列出系统中的所有卷组。确认 `vg01` 卷组是否成功创建，并查看其包含的物理卷和大小信息。
-
+	
 	显示卷组详细信息：
-
+	
 	```bash
 	vgdisplay vg01
 	```
-
+	
 	详细显示卷组 `vg01` 的信息，包括卷组的总大小、可用空间等详细信息。
 
 6. **创建逻辑卷**：
@@ -263,4 +263,47 @@ echo "/dev/mapper/vg01-lv01 /data xfs default 0 0" >> /etc/fstab
 9.这不是它的目录。虽然/dev是个目录，但/dev/sdb1不是目录。可以发现ls/dev/sdb1无法执行。/dev/sdb1，是一个类似指针的东西，指向这个分区的原始数据块。mount前，系统并不知道这个数据块哪部分数据代表文件，如何对它们操作。
 
 10.插入CD，系统其实自动执行了 mount /dev/cdrom /media/cdrom。所以可以直接在/media/cdrom中对CD中的内容进行管理。
+
+
+
+---
+
+### 五、查看某个目录的挂载路径
+
+要查看某个目录的硬盘挂载情况，可以使用`df`、`mount`、`findmnt`等指令来查看：
+
+**1. 使用 `df` 命令**
+
+`df` 命令用于报告文件系统的磁盘空间使用情况，您可以指定某个目录来查看其挂载情况。
+
+```shell
+df -h /path/to/directory
+```
+
+- `-h` 选项使输出更具可读性（以人类可读的格式显示）。
+- `/path/to/directory` 是你要检查的目录路径。
+
+**2. 使用 `mount` 命令**
+
+`mount` 命令显示当前挂载的所有文件系统。
+
+```shell
+mount | grep '/path/to/directory'
+```
+
+**3. 使用 `findmnt` 命令**
+
+`findmnt` 命令用于查找挂载的文件系统。
+
+```shell
+findmnt /path/to/directory
+```
+
+**示例：**
+
+```shell
+df -h /home		#这将显示`/home`目录所在的文件系统的挂载情况，包括总空间、已用空间、可用空间等信息。
+mount | grep '/home'	#这将显示包含`/home`目录的挂载信息。
+findmnt /home	#这将输出关于`/home`目录的挂载信息，包括设备、挂载点、文件系统类型等。
+```
 
