@@ -188,7 +188,7 @@ GitHub每个Repo的大小限制为100GB，单个文件大小限制为100MB，我
 
 **脚本文件：**[点我，快速跳转](..\Script脚本集(bat,shell)\typora+github云笔记，自动上传脚本)
 
-**项目库链接：**[点我，快速跳转]
+**项目库链接：**[点我，快速跳转](https://github.com/nikoni233/scripts/tree/main/AutoUpdate_TyporaWithGithub)
 
 **食用方法：**
 
