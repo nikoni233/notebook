@@ -12,13 +12,15 @@
 **（把.txt删掉然后运行）脚本文件：**`AutoUpdate.bat.txt`	（Windows运行，bat文件）
 
 **（手动配置，把.txt删掉）Git配置文件：**`.gitignore.txt`
-`.gitignore`是Git配置文件，用于Git提交时，忽视那些你配置的文件。
+`.gitignore`是Git配置文件，用于Git提交时，忽视那些你配置的文件。目录也可以。
+
 示例：
 
 ```
 AutoUpdate.bat
 AutoTest.bat
 Auto*.bat
+你的秘密目录,它是不会被上传到github上的
 ```
 
 
