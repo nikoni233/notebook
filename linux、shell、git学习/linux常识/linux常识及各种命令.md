@@ -289,8 +289,9 @@ echo "内容" >> filename.txt  # 追加写入
 ```shell
 echo "$(cat filename.txt)"
 
-# 这里，`$(cat filename.txt)` 会将 `filename.txt` 文件的内容读取并传递给 `echo`，然后 `echo` 会显示这些内容。
 ```
+
+这里，`$(cat filename.txt)` 会将 `filename.txt` 文件的内容读取并传递给 `echo`，然后 `echo` 会显示这些内容。
 
 
 
