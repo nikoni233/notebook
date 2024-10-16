@@ -38,7 +38,7 @@
 
 	```bash
 	# tar -xvf 归档名.tar
-	tar -xvf tarfile.tar
+	tar tarfile.tar
 	```
 
 - **解压 `.tar.gz` 文件**：
@@ -96,4 +96,78 @@ tar -xzvf tarfile.tar.gz -C /path/to/destination/
 **`.tar.bz2` (bzip2 压缩)，描述：**
 
 `bzip2` 提供较好的压缩比和速度，但相对 `gzip` 更慢。
+
+
+
+---
+
+## zip 压缩/解压
+
+在 Linux 中，`zip` 和 `unzip` 是用于压缩和解压缩文件的常用命令。如果你的系统中没有安装 `zip` 和 `unzip` ，通过以下命令安装：
+
+对于 Debian/Ubuntu 系统：
+
+```shell
+sudo apt-get install zip unzip
+```
+
+对于 Red Hat/CentOS 系统：
+
+```shell
+sudo yum install zip unzip
+```
+
+### 压缩文件
+
+使用 `zip` 命令来压缩文件或目录：
+
+```shell
+zip [压缩文件名.zip] [要压缩的文件或目录]
+```
+
+例如，要压缩一个名为 `file.txt` 的文件：
+
+```shell
+zip file.zip file.txt
+```
+
+要压缩整个目录及其内容，可以使用 `-r` 选项：
+
+```shell
+zip -r archive.zip directory_name
+```
+
+### 解压缩文件
+
+使用 `unzip` 命令来解压缩 `.zip` 文件：
+
+```shell
+unzip [压缩文件名.zip]
+```
+
+例如，要解压缩名为 `file.zip` 的文件，可以使用：
+
+```shell
+unzip file.zip
+```
+
+### 其他常用选项
+
+- **查看 zip 文件内容**：
+
+	```
+	unzip -l file.zip
+	```
+
+- **将文件解压到指定目录**：
+
+	```shell
+	unzip file.zip -d /path/to/directory
+	```
+
+- **更新已有的 zip 文件**（将更改后的文件添加到 zip 中）：
+
+	```shell
+	zip -u file.zip file.txt
+	```
 
