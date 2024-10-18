@@ -1,0 +1,24 @@
+Featured server snaps
+These are popular snaps in server environments. Select or deselect with SPACE, press ENTER to see more details of the package, publisher and versions available.
+
+microk8s			canonical 				Kubernetes for workstations and appliances
+nextcloud			nextcloud				Nextcloud Server - A safe home for all your data
+wekan				xet7 					Open-Source kanban
+kata-containers		katacontainers 			Build lightweight VMs that seamlessly plug into the containers ecosystem
+docker				canonical 				Docker container runtime
+canonical-livepatch	canonical 				Canonical Livepatch Client
+rocketchat-server	rocketchat 				Rocket.Chat server
+mosquitto			mosquitto 				Eclipse Mosquitto MQTT broker
+etcd				canonical 				Resilient key-value store by Coreo
+powershe11			microsoft-powershell 	PowerShell for every system!
+sabnzbd				safihre 				SABnzbd
+wormhole			snapcrafters 			get things from one computer to another, safely
+aws-cli				aws 					Universal Command Line Interface for Amazon Web Services
+google-cloud-sdk	google-cloud-sdk 		Google Cloud SDK
+slcli				softlayer 				Python based SoftLayer API Tool.
+doct1				digitalocean 			The official DigitalOcean command line interface
+conjure-up			canonical 				Package runtime for conjure-up spells
+postgresq110		cmd 					PostgreSQL is a powerful, open source object-relational database system.
+heroku				heroku 					CLI client for Heroku
+keepalived			keepalived-project 		High availability VRRP/BFD and load-balancing for Linux
+prometheus			canonical 				The Prometheus monitoring system and time series database
