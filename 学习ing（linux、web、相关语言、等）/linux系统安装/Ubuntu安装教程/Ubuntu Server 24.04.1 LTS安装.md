@@ -5,7 +5,7 @@ Ubuntu Server 24.04.1 LTS
 **系统安装**
 
 VMware设置：
->虚拟机名称：centos 24.4_01
+>虚拟机名称：Ubuntu 24.4_01
 >处理器：处理器数量：2	每个处理器的内核数量：2
 >虚拟机内存：4096MB
 >网络连接：使用网络地址转换(NAT)
@@ -13,7 +13,7 @@ VMware设置：
 
 Ubuntu引导安装：
 >Keyboard：English (US)
->Choose the base for the installation：Ubuntu Sever (minimized)
+>Choose the base for the installation：Ubuntu Sever 
 >Storage configuration设置自定义硬盘挂载，下面是挂载好的最终结果：
 >
 >>USED DEVICES
@@ -34,7 +34,7 @@ Ubuntu引导安装：
 >[X]	Install PenSSH server
 >
 >Featured server snaps：
->microk8s、nextcloud、docker、wormhole、postgresq110、prometheus
+>microk8s、docker、wormhole、postgresq110、prometheus
 >
 >然后重启。
 >

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intrusion Detection Plugin Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Intrusion Detection Plugin Admin</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Statistics</h2>
+                <p>Attacks Defended: <span id="attackCount">Loading...</span></p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Vector Libraries</h2>
+                <div class="mb-4">
+                    <h3 class="font-medium mb-2">SQL Injection Vectors</h3>
+                    <ul id="sqlVectors" class="list-disc pl-5"></ul>
+                </div>
+                <div>
+                    <h3 class="font-medium mb-2">XSS Vectors</h3>
+                    <ul id="xssVectors" class="list-disc pl-5"></ul>
+                </div>
+                <form id="addVectorForm" class="mt-4">
+                    <select id="vectorType" class="border p-2 mr-2">
+                        <option value="sql">SQL</option>
+                        <option value="xss">XSS</option>
+                    </select>
+                    <input type="text" id="newVector" placeholder="New vector" class="border p-2 mr-2">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+                </form>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Blacklists</h2>
+                <div class="mb-4">
+                    <h3 class="font-medium mb-2">Temporary Blacklist</h3>
+                    <ul id="tempBlacklist" class="list-disc pl-5"></ul>
+                </div>
+                <div>
+                    <h3 class="font-medium mb-2">Permanent Blacklist</h3>
+                    <ul id="permBlacklist" class="list-disc pl-5"></ul>
+                </div>
+                <form id="addBlacklistForm" class="mt-4">
+                    <input type="text" id="newBlacklistIP" placeholder="IP Address" class="border p-2 mr-2">
+                    <select id="blacklistType" class="border p-2 mr-2">
+                        <option value="permanent">Permanent</option>
+                        <option value="temporary">Temporary</option>
+                    </select>
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Add to Blacklist</button>
+                </form>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Logs</h2>
+                <div id="logs" class="h-64 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch and display statistics
+        fetch('/admin/stats')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('attackCount').textContent = data.attackCount;
+            });
+
+        // Fetch and display vector libraries
+        fetch('/admin/vectors')
+            .then(response => response.json())
+            .then(data => {
+                const sqlList = document.getElementById('sqlVectors');
+                const xssList = document.getElementById('xssVectors');
+                
+                data.sqlVectors.forEach(vector => {
+                    const li = document.createElement('li');
+                    li.textContent = vector;
+                    sqlList.appendChild(li);
+                });
+                
+                data.xssVectors.forEach(vector => {
+                    const li = document.createElement('li');
+                    li.textContent = vector;
+                    xssList.appendChild(li);
+                });
+            });
+
+        // Add new vector
+        document.getElementById('addVectorForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const type = document.getElementById('vectorType').value;
+            const vector = document.getElementById('newVector').value;
+            
+            fetch('/admin/vectors', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type, vector })
+            })
+            .then(() => location.reload());
+        });
+
+        // Fetch and display blacklists
+        fetch('/admin/blacklists')
+            .then(response => response.json())
+            .then(data => {
+                const tempList = document.getElementById('tempBlacklist');
+                const permList = document.getElementById('permBlacklist');
+                
+                data.tempBlacklist.forEach(([ip, expiry]) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${ip} (expires: ${new Date(expiry).toLocaleString()})`;
+                    tempList.appendChild(li);
+                });
+                
+                data.permBlacklist.forEach(ip => {
+                    const li = document.createElement('li');
+                    li.textContent = ip;
+                    permList.appendChild(li);
+                });
+            });
+
+        // Add to blacklist
+        document.getElementById('addBlacklistForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const ip = document.getElementById('newBlacklistIP').value;
+            const type = document.getElementById('blacklistType').value;
+            
+            fetch('/admin/blacklists', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ip, type })
+            })
+            .then(() => location.reload());
+        });
+
+        // Fetch and display logs
+        fetch('/admin/logs')
+            .then(response => response.json())
+            .then(logs => {
+                const logsContainer = document.getElementById('logs');
+                logs.forEach(log => {
+                    const p = document.createElement('p');
+                    p.textContent = `${log.timestamp} - ${log.type}: ${log.message}`;
+                    p.className = log.type === 'Normal' ? 'text-green-600' : 'text-red-600';
+                    logsContainer.appendChild(p);
+                });
+            });
+    </script>
+</body>
+</html>
