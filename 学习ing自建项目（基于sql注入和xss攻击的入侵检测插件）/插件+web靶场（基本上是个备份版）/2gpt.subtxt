@@ -1,0 +1,5 @@
+名称					状态		类型			启动器
+admin123/			304		document	其他
+admin.css			404		stylesheet	admin123/:6
+admin.js			304		script		admin123/:23
+InjDetLogs.json		404		fetch		admin.js/:14
