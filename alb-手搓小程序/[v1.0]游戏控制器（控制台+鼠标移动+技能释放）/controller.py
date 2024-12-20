@@ -39,6 +39,7 @@ def focus_game_window(window_title):
             print(f"{current_time()} 窗口最小化，恢复窗口...")
             window.restore()
         else:
+            window.activate()  # 强制将目标窗口置为前置窗口
             print(f"{current_time()} 窗口 {window_title} 已经是活动窗口")
 
     except IndexError:
@@ -79,13 +80,13 @@ def move_character(direction, distance, window_title):
 
 def use_skill(skill, window_title):
     print(f"{current_time()} 给出指令：使用 {skill} 技能")
-    focus_game_window(window_title)  # 每次使用技能时先激活游戏窗口
+    # focus_game_window(window_title)  # 每次使用技能时先激活游戏窗口
 
     # 获取目标窗口句柄并强制激活
     window = gw.getWindowsWithTitle(window_title)[0]
     if window.isMinimized:
         window.restore()
-    window.activate()  # 强制将目标窗口置为前置窗口
+    # window.activate()  # 强制将目标窗口置为前置窗口
 
     key = KEY_MAPPINGS.get(skill)
     if key:

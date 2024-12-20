@@ -31,14 +31,27 @@ class GameControllerApp:
         self.skill_button_q = tk.Button(self.root, text="使用Q技能", command=lambda: self.use_skill('Q'))
         self.skill_button_q.pack()
 
-        self.skill_button_w = tk.Button(self.root, text="使用F技能", command=lambda: self.use_skill('W'))
+        self.skill_button_w = tk.Button(self.root, text="使用W技能", command=lambda: self.use_skill('W'))
         self.skill_button_w.pack()
 
-        self.skill_button_e = tk.Button(self.root, text="使用R技能", command=lambda: self.use_skill('E'))
+        self.skill_button_e = tk.Button(self.root, text="使用E技能", command=lambda: self.use_skill('E'))
         self.skill_button_e.pack()
 
         self.quit_button = tk.Button(self.root, text="退出", command=self.quit)
         self.quit_button.pack()
+
+        # 置顶开关变量
+        self.top_switch_var = tk.BooleanVar()  # 变量，用于存储复选框的状态
+        self.top_switch = tk.Checkbutton(self.root, text="窗口置顶", variable=self.top_switch_var,
+                                         command=self.toggle_top)
+        self.top_switch.pack()
+
+    def toggle_top(self):
+        """根据开关的状态设置窗口是否置顶"""
+        if self.top_switch_var.get():
+            self.root.wm_attributes("-topmost", 1)  # 设置窗口置顶
+        else:
+            self.root.wm_attributes("-topmost", 0)  # 取消置顶
 
     def execute_command(self):
         command = self.command_entry.get()
