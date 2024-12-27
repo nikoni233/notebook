@@ -135,7 +135,7 @@ An optional company name []:ccu
 
 （3）加载ssl支持的nginx并使用私钥时去除口令
 cp server.key server.key.bak
-rsa -in server.key.bak -out server.key
+openssl rsa -in server.key.bak -out server.key
 
 （4）自动签发证书
 openssl x509 -req -days 10240 -in server.csr -signkey server.key -out server.crt
