@@ -27,6 +27,6 @@ wget http://192.168.255.128:7979/haha.txt
 **Windows：**
 
 ```shell
-crul http://192.168.255.128:7979/haha.txt -o haha.txt
+curl http://192.168.255.128:7979/haha.txt -o haha.txt
 ```
 
