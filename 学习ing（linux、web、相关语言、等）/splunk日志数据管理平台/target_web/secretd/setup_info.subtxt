@@ -1,0 +1,37 @@
+===============================================================
+nginx+nodejs+mysql; nginx:8080, nodejs:3000
+===============================================================
+npm install express mysql2 body-parser express-fileupload
+===============================================================
+mysql -u root -p < database.sql
+===============================================================
+/etc/nginx/nginx.conf
+#########################
+#/home/nginx/target_web
+    server {
+        listen 8080;
+        server_name localhost;
+        client_max_body_size 10M;
+        location / {
+            root /home/nginx/target_web/public;
+            index index.html;
+        }
+        location /upload {
+            proxy_pass http://localhost:3000/upload;
+        }
+
+        location /search {
+            proxy_pass http://localhost:3000/search;
+        }
+        location /comments {
+            proxy_pass http://localhost:3000/comments;
+        }
+        location /login {
+            proxy_pass http://localhost:3000/login;
+        }
+        location /image {
+            proxy_pass http://localhost:3000;
+        }
+    }
+#########################
+===============================================================

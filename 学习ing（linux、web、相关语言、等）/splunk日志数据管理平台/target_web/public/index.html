@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>&#67;&#105;&#97;&#108;&#108;&#111;&#65374;&#40;&#8736;&#12539;&#969;&#60;&#32;&#41;&#8978;&#9734;</title>
+</head>
+<body>
+<!-- 目录遍历 部分 -->
+    <h2>dictionary</h2>
+    <img src="/image?filename=catcat.png" width="150" height="150" alt="Cat Image">
+    <img src="/image?filename=dogdog.png" width="150" height="150" alt="Dog Image">
+<!-- SQL注入 部分 -->
+    <h2>SQL</h2>
+    <input id="input2" placeholder="用户名"/>
+    <input id="input3" placeholder="密码"/>
+    <button onclick="sql_func()">提交</button>
+    <div id="userInfo"></div>
+    <script src="/js/sql.js"></script>
+<!-- 文件上传 部分 -->
+    <h2>File Upload</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="uploadResult" style="display:none;">
+        <p id="uploadMessage"></p>
+    </div>
+    <script src="/js/upload.js"></script>
+<!-- 搜索框 部分 -->
+    <h2>Search (code injection)</h2>
+    <form id="searchForm">
+        <input type="text" id="filename" name="filename" placeholder="Enter filename" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="result"></div>
+    <script src="/js/search.js"></script>
+<!-- 留言板 部分 -->
+    <h2>Comments (xss)</h2>
+    <form onsubmit="postComment(event)">
+        <textarea id="comment-input" required></textarea><br>
+        <button type="submit">Post Comment</button>
+    </form>
+    <ul id="comments-list">
+    </ul><!-- 评论会被动态加载到这里 -->
+    <div>
+        <button onclick="resetComments()">Reset</button>
+        <button onclick="jumpToContent()">Jump to Content</button>
+    </div>
+    <!--<h3 id="latest-content">
+    </h3>--><!-- 最新评论会显示在这里 -->
+    <script src="/js/comments.js"></script>
+
+
+</body>
+</html>
